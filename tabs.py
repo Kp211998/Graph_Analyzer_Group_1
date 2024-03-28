@@ -44,7 +44,7 @@ def upload_graph():
         update_graph_dict()
         st.success("Graph uploaded successfully.")
         st.rerun()
-    st.text("You can click on the below button to create a PPR model and download the JSON file")
+    st.text("You can click on the below button to create a PPR model and download the JSON file in MAPPR app by Mr. David Hoffmann")
     if 'app_visible' not in st.session_state:
         st.session_state.app_visible = False
     # Button to toggle the embedded app visibility
