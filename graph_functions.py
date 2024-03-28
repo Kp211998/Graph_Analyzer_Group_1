@@ -3,10 +3,8 @@ import networkx as nx  # Importing NetworkX for graph manipulation
 import graphviz  # Importing Graphviz for visualization
 import uuid
 import numpy as np
-from sklearn.cluster import SpectralClustering
 import matplotlib.pyplot as plt
 import numpy as np
-from sklearn.cluster import SpectralClustering
 from pyvis.network import Network
 
 
@@ -471,27 +469,6 @@ def save_edge(source_node, relation, target_node, selected_view):
     st.session_state['view_graphs'].append(view_graph_dict)
 
     st.write(st.session_state['view_graphs'])
-
-def spectral_clustering(graph, num_clusters):
-    adjacency_matrix = nx.adjacency_matrix(graph).todense()
-    spectral = SpectralClustering(n_clusters=num_clusters, affinity='precomputed', random_state=42)
-    labels = spectral.fit_predict(adjacency_matrix)
-    net = Network(height="500px", width="100%", notebook=False)
-    net.barnes_hut()
-
-    # Add nodes
-    for node, label in enumerate(labels):
-        net.add_node(node, label=str(node), color=label)
-
-    # Add edges
-    for edge in graph.edges():
-        net.add_edge(edge[0], edge[1])
-
-    # Show the network
-    net.show("clustered_graph.html")
-    st.components.v1.html(open("clustered_graph.html", "r").read(), width=800, height=600)
-
-    # return labels
 
 # def visualize_clusters(graph, labels):
 
